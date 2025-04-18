@@ -24,15 +24,14 @@ from train_engine import train
 ###### CONFIGURATION ######
 DATA_DIR = "./data/MY_data"
 EXP_DIR = "./logs"
-
 TRAINING_CONFIG = {
     "experiment_name": "vit_fruit_classification",
     "seed": 42,
-    "batch_size": 128,
+    "batch_size": 32,
     "epochs": 40,
     "learning_rate": 0.001,
-    "betas": (0.9, 0.999),
-    "weight_decay": 0.01,
+    "lr_scheduler_step": 10,
+    "lr_scheduler_gamma": 0.1,
 }
 ATTENTION_CONFIG = {"num_heads": 8, "dropout": 0.1, "use_bias": True}
 MODEL_CONFIG = {
@@ -40,7 +39,7 @@ MODEL_CONFIG = {
     "patch_size": 8,
     "num_classes": 10,  # Number of classes in the dataset
     "hidden_states": 512,
-    "num_layers": 12,
+    "num_layers": 8,
     "dropout": 0.1,
 }
 ###### CONFIGURATION ######
@@ -143,7 +142,7 @@ if __name__ == "__main__":
         test_loader=test_loader,
         optimizer=optimizer,
         criterion=criterion,
-        num_epochs=TRAINING_CONFIG['epochs'],
+        num_epochs=TRAINING_CONFIG["epochs"],
         device=device,
         model_dir=model_dir,
         scheduler=scheduler,
