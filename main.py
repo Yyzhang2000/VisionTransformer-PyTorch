@@ -106,12 +106,6 @@ if __name__ == "__main__":
         scheduler=scheduler,
         writer=writer,
     )
-
-    torch.save(
-        model.state_dict(),
-        os.path.join(model_dir, "model.pth"),
-    )
-    logging.info(f"Final model saved to {os.path.join(model_dir, "model.pth")}")
     writer.close()
     logging.info("Training completed.")
     logging.info("TensorBoard logs saved.")
