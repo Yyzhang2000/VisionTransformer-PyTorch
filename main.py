@@ -32,7 +32,7 @@ TRAINING_CONFIG = {
     "lr_scheduler_step": 10,
     "lr_scheduler_gamma": 0.1,
 }
-ATTENTION_CONFIG = {"num_heads": 8, "head_dim": 64, "dropout": 0.1, "use_bias": True}
+ATTENTION_CONFIG = {"num_heads": 8, "dropout": 0.1, "use_bias": True}
 MODEL_CONFIG = {
     "image_size": 224,
     "patch_size": 16,
@@ -106,7 +106,7 @@ if __name__ == "__main__":
         test_loader=test_loader,
         optimizer=optimizer,
         criterion=criterion,
-        num_epochs=20,
+        num_epochs=TRAINING_CONFIG['epochs'],
         device=device,
         model_dir=model_dir,
         scheduler=scheduler,
