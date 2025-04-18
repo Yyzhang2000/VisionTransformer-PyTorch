@@ -9,7 +9,7 @@ import logging
 from torch.utils.tensorboard import SummaryWriter  # type: ignore
 
 from model.vit import ViT
-from model.config import ViTConfig
+from model.config import ViTConfig, AttentionConfig
 
 from torch.utils.data import DataLoader
 from dataset import FruitDataset
@@ -32,6 +32,7 @@ TRAINING_CONFIG = {
     "lr_scheduler_step": 10,
     "lr_scheduler_gamma": 0.1,
 }
+ATTENTION_CONFIG = {"num_heads": 8, "head_dim": 64, "dropout": 0.1, "use_bias": True}
 MODEL_CONFIG = {
     "image_size": 224,
     "patch_size": 16,
@@ -70,7 +71,9 @@ if __name__ == "__main__":
 
     ### Load and Save Config
     MODEL_CONFIG.update(num_classes=len(train_dataset.classes))
+    custom_attention = AttentionConfig(**ATTENTION_CONFIG)
     model_config = ViTConfig(**MODEL_CONFIG)
+    model_config.attention_config = custom_attention
     config_dict = {
         "model_config": config_to_dict(model_config),
         "training_config": TRAINING_CONFIG,

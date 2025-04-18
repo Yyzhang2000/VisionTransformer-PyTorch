@@ -19,7 +19,7 @@ class ViTConfig:
     # ViT Configuration
     hidden_states: int = 768
     attention_config: AttentionConfig = field(init=False)
-    patch_size: int = 16
+    patch_size: int = 8
     num_layers: int = 12
     attention_dropout: float = 0.1
     dropout: float = 0.1
