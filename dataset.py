@@ -15,6 +15,7 @@ class FruitDataset(Dataset):
         self.classes = os.listdir(self.data_dir)
         self.classes = sorted(self.classes)
         self.class_to_idx = {cls.lower(): idx for idx, cls in enumerate(self.classes)}
+        self.idx_to_class = {idx: cls.lower() for idx, cls in enumerate(self.classes)}
 
         self.images = []
         for cls in self.classes:

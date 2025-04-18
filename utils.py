@@ -88,13 +88,17 @@ def get_device():
 def config_to_dict(config):
     from dataclasses import asdict, is_dataclass
 
-    result = {}
-    for key, value in asdict(config).items():
+    def convert(value):
         if is_dataclass(value):
-            result[key] = asdict(value)  # type: ignore
+            return convert(asdict(value))
+        elif isinstance(value, dict):
+            return {k: convert(v) for k, v in value.items()}
+        elif isinstance(value, (list, tuple)):
+            return [convert(v) for v in value]
         else:
-            result[key] = value
-    return result
+            return value
+
+    return convert(config)
 
 
 def load_config(config_path):

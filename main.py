@@ -8,7 +8,6 @@ from torch.optim.lr_scheduler import LambdaLR
 import math
 
 import logging
-from torch.utils.tensorboard import SummaryWriter  # type: ignore
 
 from model.vit import ViT
 from model.config import ViTConfig, AttentionConfig
@@ -104,7 +103,7 @@ if __name__ == "__main__":
     model_config.attention_config = custom_attention
     config_dict = {
         "model_config": config_to_dict(model_config),
-        "training_config": TRAINING_CONFIG,
+        "training_config": config_to_dict(TRAINING_CONFIG),
     }
 
     with open(
@@ -112,8 +111,9 @@ if __name__ == "__main__":
     ) as f:
         yaml.dump(config_dict, f)
     logging.info(f"Configuration saved to {os.path.join(model_dir, 'config.yaml')}")
+    breakpoint()
 
-    writer = SummaryWriter(model_dir)
+    writer = set_tensorboard_writer(model_dir)
 
     # Initialize Model
     model = ViT(model_config)

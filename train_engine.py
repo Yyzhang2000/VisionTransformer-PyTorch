@@ -47,6 +47,7 @@ def train_one_epoch(
             writer.add_scalar("Loss/train", loss.item(), step)
             writer.add_scalar("Accuracy/train", 100 * correct / total, step)
 
+        del images, labels, outputs, loss
         if torch.cuda.is_available():
             torch.cuda.empty_cache()
             torch.cuda.ipc_collect()
@@ -86,6 +87,11 @@ def test(model, test_loader, criterion, device, writer=None, epoch=None):
                 writer.add_scalar("Loss/test", loss.item(), step)
                 writer.add_scalar("Accuracy/test", 100 * correct / total, step)
 
+            del images, labels, outputs
+            if torch.cuda.is_available():
+                torch.cuda.empty_cache()
+                torch.cuda.ipc_collect()
+
     epoch_loss = running_loss / len(test_loader.dataset)
     epoch_acc = 100 * correct / total
     return epoch_loss, epoch_acc
@@ -109,7 +115,7 @@ def train(
         train_loss, train_acc = train_one_epoch(
             model, train_loader, optimizer, criterion, scheduler, device, epoch, writer
         )
-        test_loss, test_acc = test(model, test_loader, criterion, device)
+        test_loss, test_acc = test(model, test_loader, criterion, device, writer, epoch)
 
         logging.info(
             f"Epoch [{epoch + 1}/{num_epochs}], "
