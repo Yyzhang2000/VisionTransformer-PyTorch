@@ -88,18 +88,7 @@ if __name__ == "__main__":
     logging.info(f"Using device: {device}")
 
     ### Load dataset
-    train_transformer = transforms.Compose(
-        [
-            transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),
-            transforms.RandomHorizontalFlip(p=0.5),
-            transforms.ColorJitter(
-                brightness=0.4, contrast=0.4, saturation=0.4, hue=0.1
-            ),
-            transforms.ToTensor(),
-            transforms.Normalize(mean=[0.5] * 3, std=[0.5] * 3),
-        ]
-    )
-    train_dataset = FruitDataset(DATA_DIR, split="train", transform=train_transformer)
+    train_dataset = FruitDataset(DATA_DIR, split="train")
     test_dataset = FruitDataset(DATA_DIR, split="test")
 
     train_loader = DataLoader(
@@ -126,7 +115,6 @@ if __name__ == "__main__":
     ) as f:
         yaml.dump(config_dict, f)
     logging.info(f"Configuration saved to {os.path.join(model_dir, 'config.yaml')}")
-    breakpoint()
 
     writer = set_tensorboard_writer(model_dir)
 
