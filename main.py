@@ -5,6 +5,7 @@ import yaml
 import torch.optim as optim
 import torch.nn.functional as F
 from torch.optim.lr_scheduler import LambdaLR
+from torchvision import transforms
 import math
 
 import logging
@@ -87,10 +88,24 @@ if __name__ == "__main__":
     logging.info(f"Using device: {device}")
 
     ### Load dataset
-    train_dataset = FruitDataset(DATA_DIR, split="train")
+    train_transformer = transforms.Compose(
+        [
+            transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),
+            transforms.RandomHorizontalFlip(p=0.5),
+            transforms.ColorJitter(
+                brightness=0.4, contrast=0.4, saturation=0.4, hue=0.1
+            ),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=[0.5] * 3, std=[0.5] * 3),
+        ]
+    )
+    train_dataset = FruitDataset(DATA_DIR, split="train", transform=train_transformer)
     test_dataset = FruitDataset(DATA_DIR, split="test")
+
     train_loader = DataLoader(
-        train_dataset, batch_size=TRAINING_CONFIG["batch_size"], shuffle=True
+        train_dataset,
+        batch_size=TRAINING_CONFIG["batch_size"],
+        shuffle=True,
     )
     test_loader = DataLoader(
         test_dataset, batch_size=TRAINING_CONFIG["batch_size"], shuffle=False
