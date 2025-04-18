@@ -37,7 +37,7 @@ TRAINING_CONFIG = {
 ATTENTION_CONFIG = {"num_heads": 8, "dropout": 0.1, "use_bias": True}
 MODEL_CONFIG = {
     "image_size": 224,
-    "patch_size": 16,
+    "patch_size": 8,
     "num_classes": 10,  # Number of classes in the dataset
     "hidden_states": 512,
     "num_layers": 12,
