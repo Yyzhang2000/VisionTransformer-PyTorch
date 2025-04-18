@@ -86,6 +86,7 @@ if __name__ == "__main__":
 
     # Initialize Model
     model = ViT(model_config)
+    model.to(device)
 
     ## Optimizer and Learning Rate Scheduler
     optimizer = optim.Adam(model.parameters(), lr=TRAINING_CONFIG["learning_rate"])
