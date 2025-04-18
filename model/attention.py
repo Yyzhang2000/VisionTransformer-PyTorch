@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from config import AttentionConfig
+from .config import AttentionConfig
 
 
 class MultiHeadAttention(nn.Module):
@@ -31,7 +31,7 @@ class MultiHeadAttention(nn.Module):
         B, S, D = x.shape
 
         q, k, v = map(
-            lambda x: x.view(B, S, self.num_heads, self.head_dim).transpose(1, 2),
+            lambda x: x.reshape(B, S, self.num_heads, self.head_dim).transpose(1, 2),
             self.qkv_proj(x).chunk(3, dim=-1),
         )
 
@@ -40,7 +40,7 @@ class MultiHeadAttention(nn.Module):
         attn = F.softmax(score, dim=-1)
         attn = self.dropout(attn)
 
-        out = torch.matmul(attn, v).transpose(1, 2).contiguous().view(B, S, D)
+        out = torch.matmul(attn, v).transpose(1, 2).contiguous().reshape(B, S, D)
         out = self.out_proj(out)
 
         return out

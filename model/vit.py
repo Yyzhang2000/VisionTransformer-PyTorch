@@ -2,8 +2,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from config import ViTConfig
-from attention import MultiHeadAttention
+from .config import ViTConfig
+from .attention import MultiHeadAttention
 
 
 class PatchEmbedding(nn.Module):
@@ -24,7 +24,7 @@ class PatchEmbedding(nn.Module):
     def forward(self, x: torch.Tensor):
         x = self.linear_projection(x)
 
-        x = x.flatten(2).transpose(1, 2)  # (B, C, H, W) -> (B, H*W, C)
+        x = x.flatten(2).transpose(1, 2).contiguous()  # (B, C, H, W) -> (B, H*W, C)
 
         return x
 
