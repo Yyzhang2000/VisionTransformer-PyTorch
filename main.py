@@ -4,6 +4,8 @@ import yaml
 
 import torch.optim as optim
 import torch.nn.functional as F
+from torch.optim.lr_scheduler import LambdaLR
+import math
 
 import logging
 from torch.utils.tensorboard import SummaryWriter  # type: ignore
@@ -29,8 +31,8 @@ TRAINING_CONFIG = {
     "batch_size": 128,
     "epochs": 40,
     "learning_rate": 0.001,
-    "lr_scheduler_step": 10,
-    "lr_scheduler_gamma": 0.1,
+    "betas": (0.9, 0.999),
+    "weight_decay": 0.01,
 }
 ATTENTION_CONFIG = {"num_heads": 8, "dropout": 0.1, "use_bias": True}
 MODEL_CONFIG = {
@@ -42,6 +44,33 @@ MODEL_CONFIG = {
     "dropout": 0.1,
 }
 ###### CONFIGURATION ######
+
+
+#### Optimization
+def warmup_cosine_scheduler(optimizer, warmup_steps, total_steps):
+    def lr_lambda(current_step):
+        if current_step < warmup_steps:
+            return float(current_step) / float(max(1, warmup_steps))
+        progress = float(current_step - warmup_steps) / float(
+            max(1, total_steps - warmup_steps)
+        )
+        return 0.5 * (1.0 + math.cos(math.pi * progress))
+
+    return LambdaLR(optimizer, lr_lambda)
+
+
+def initialize_weights(m):
+    if isinstance(m, nn.Linear):
+        nn.init.xavier_uniform_(m.weight)
+        if m.bias is not None:
+            nn.init.constant_(m.bias, 0)
+    elif isinstance(m, nn.Conv2d):
+        nn.init.kaiming_normal_(m.weight, mode="fan_out", nonlinearity="relu")
+        if m.bias is not None:
+            nn.init.constant_(m.bias, 0)
+    elif isinstance(m, nn.LayerNorm):
+        nn.init.constant_(m.bias, 0)
+        nn.init.constant_(m.weight, 1.0)
 
 
 if __name__ == "__main__":
@@ -89,15 +118,23 @@ if __name__ == "__main__":
 
     # Initialize Model
     model = ViT(model_config)
+    model.apply(initialize_weights)
+    logging.info("Model weights initialized.")
+
     model.to(device)
 
     ## Optimizer and Learning Rate Scheduler
-    optimizer = optim.Adam(model.parameters(), lr=TRAINING_CONFIG["learning_rate"])
-    scheduler = optim.lr_scheduler.StepLR(
-        optimizer,
-        step_size=TRAINING_CONFIG["lr_scheduler_step"],
-        gamma=TRAINING_CONFIG["lr_scheduler_gamma"],
+    total_steps = len(train_loader) * TRAINING_CONFIG["epochs"]
+    warmup_steps = int(0.1 * total_steps)
+
+    optimizer = optim.Adam(
+        model.parameters(),
+        lr=TRAINING_CONFIG["learning_rate"],
+        betas=TRAINING_CONFIG["betas"],
+        weight_decay=TRAINING_CONFIG["weight_decay"],
     )
+    scheduler = warmup_cosine_scheduler(optimizer, warmup_steps, total_steps)
+
     criterion = nn.CrossEntropyLoss()
 
     train(

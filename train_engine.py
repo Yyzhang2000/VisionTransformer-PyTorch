@@ -9,7 +9,7 @@ import shutil
 
 
 def train_one_epoch(
-    model, train_loader, optimizer, criterion, device, epoch, writer=None
+    model, train_loader, optimizer, criterion, scheduler, device, epoch, writer=None
 ):
     model.train()
     running_loss = 0.0
@@ -33,6 +33,8 @@ def train_one_epoch(
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+        if scheduler:
+            scheduler.step()
 
         running_loss += loss.item() * images.size(0)
         _, predicted = torch.max(outputs.data, 1)
@@ -51,6 +53,7 @@ def train_one_epoch(
     return epoch_loss, epoch_acc
 
 
+@torch.no_grad()
 def test(model, test_loader, criterion, device, writer=None, epoch=None):
     model.eval()
     running_loss = 0.0
@@ -100,7 +103,7 @@ def train(
 
     for epoch in range(num_epochs):
         train_loss, train_acc = train_one_epoch(
-            model, train_loader, optimizer, criterion, device, epoch, writer
+            model, train_loader, optimizer, criterion, scheduler, device, epoch, writer
         )
         test_loss, test_acc = test(model, test_loader, criterion, device)
 
@@ -109,9 +112,6 @@ def train(
             f"Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.2f}%, "
             f"Test Loss: {test_loss:.4f}, Test Acc: {test_acc:.2f}%"
         )
-
-        if scheduler:
-            scheduler.step()
 
         torch.save(
             model.state_dict(),

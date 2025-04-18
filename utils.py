@@ -4,6 +4,9 @@ import os
 import random
 
 import logging
+import yaml
+
+from model.config import AttentionConfig, ViTConfig
 
 
 def set_seed(seed):
@@ -92,3 +95,16 @@ def config_to_dict(config):
         else:
             result[key] = value
     return result
+
+
+def load_config(config_path):
+
+    with open(config_path, "r") as f:
+        config_dict = yaml.safe_load(f)
+
+    model_cfg_dict = config_dict["model_config"]
+
+    attention_cfg = AttentionConfig(**model_cfg_dict["attention_config"])
+    model_cfg = ViTConfig(**{**model_cfg_dict, "attention_config": attention_cfg})
+
+    print(model_cfg)
