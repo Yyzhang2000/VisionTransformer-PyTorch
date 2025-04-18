@@ -47,6 +47,10 @@ def train_one_epoch(
             writer.add_scalar("Loss/train", loss.item(), step)
             writer.add_scalar("Accuracy/train", 100 * correct / total, step)
 
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+            torch.cuda.ipc_collect()
+
     epoch_loss = running_loss / len(train_loader.dataset)
     epoch_acc = 100 * correct / total
 
