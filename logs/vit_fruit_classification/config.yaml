@@ -1,0 +1,24 @@
+model_config:
+  attention_config:
+    dropout: 0.1
+    hidden_states: 512
+    num_heads: 8
+    use_bias: true
+  attention_dropout: 0.1
+  dropout: 0.1
+  hidden_states: 512
+  image_size: 224
+  num_classes: 10
+  num_layers: 8
+  patch_size: 8
+  use_bias: true
+training_config:
+  batch_size: 32
+  betas:
+  - 0.9
+  - 0.999
+  epochs: 40
+  experiment_name: vit_fruit_classification
+  learning_rate: 0.001
+  seed: 42
+  weight_decay: 0.01

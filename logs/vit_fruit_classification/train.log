@@ -1,0 +1,60 @@
+2025-04-18 14:01:57,397:INFO: Using device: cuda
+2025-04-18 14:01:57,403:INFO: Configuration saved to ./logs/vit_fruit_classification/config.yaml
+2025-04-18 14:01:57,758:INFO: Model weights initialized.
+2025-04-18 14:02:31,714:INFO: Epoch [1/40], Train Loss: 2.4288, Train Acc: 11.91%, Test Loss: 2.3167, Test Acc: 12.00%
+2025-04-18 14:02:31,800:INFO: Best model saved with accuracy: 12.00%
+2025-04-18 14:03:05,020:INFO: Epoch [2/40], Train Loss: 1.9246, Train Acc: 27.38%, Test Loss: 1.8714, Test Acc: 30.54%
+2025-04-18 14:03:05,192:INFO: Best model saved with accuracy: 30.54%
+2025-04-18 14:03:38,944:INFO: Epoch [3/40], Train Loss: 1.6894, Train Acc: 33.38%, Test Loss: 2.0839, Test Acc: 24.59%
+2025-04-18 14:04:12,194:INFO: Epoch [4/40], Train Loss: 1.6289, Train Acc: 35.29%, Test Loss: 1.7600, Test Acc: 29.95%
+2025-04-18 14:04:45,747:INFO: Epoch [5/40], Train Loss: 1.5876, Train Acc: 37.38%, Test Loss: 1.6993, Test Acc: 36.49%
+2025-04-18 14:04:45,917:INFO: Best model saved with accuracy: 36.49%
+2025-04-18 14:05:19,101:INFO: Epoch [6/40], Train Loss: 1.5002, Train Acc: 40.72%, Test Loss: 1.6809, Test Acc: 36.39%
+2025-04-18 14:05:52,427:INFO: Epoch [7/40], Train Loss: 1.4109, Train Acc: 45.15%, Test Loss: 1.6683, Test Acc: 37.27%
+2025-04-18 14:05:52,599:INFO: Best model saved with accuracy: 37.27%
+2025-04-18 14:06:25,689:INFO: Epoch [8/40], Train Loss: 1.3890, Train Acc: 47.07%, Test Loss: 1.7382, Test Acc: 30.73%
+2025-04-18 14:06:59,051:INFO: Epoch [9/40], Train Loss: 1.3504, Train Acc: 48.33%, Test Loss: 1.7171, Test Acc: 38.44%
+2025-04-18 14:06:59,216:INFO: Best model saved with accuracy: 38.44%
+2025-04-18 14:07:32,739:INFO: Epoch [10/40], Train Loss: 1.3233, Train Acc: 50.50%, Test Loss: 1.6594, Test Acc: 40.98%
+2025-04-18 14:07:32,902:INFO: Best model saved with accuracy: 40.98%
+2025-04-18 14:08:06,584:INFO: Epoch [11/40], Train Loss: 1.3015, Train Acc: 51.37%, Test Loss: 1.6419, Test Acc: 38.44%
+2025-04-18 14:08:40,138:INFO: Epoch [12/40], Train Loss: 1.3399, Train Acc: 49.89%, Test Loss: 1.6369, Test Acc: 40.49%
+2025-04-18 14:09:14,131:INFO: Epoch [13/40], Train Loss: 1.2953, Train Acc: 50.33%, Test Loss: 1.6430, Test Acc: 41.07%
+2025-04-18 14:09:14,296:INFO: Best model saved with accuracy: 41.07%
+2025-04-18 14:09:47,148:INFO: Epoch [14/40], Train Loss: 1.2623, Train Acc: 53.11%, Test Loss: 1.6159, Test Acc: 42.05%
+2025-04-18 14:09:47,310:INFO: Best model saved with accuracy: 42.05%
+2025-04-18 14:10:20,522:INFO: Epoch [15/40], Train Loss: 1.2667, Train Acc: 52.63%, Test Loss: 1.6195, Test Acc: 41.27%
+2025-04-18 14:10:54,806:INFO: Epoch [16/40], Train Loss: 1.2142, Train Acc: 54.32%, Test Loss: 1.6470, Test Acc: 40.78%
+2025-04-18 14:11:28,593:INFO: Epoch [17/40], Train Loss: 1.2054, Train Acc: 56.58%, Test Loss: 1.6035, Test Acc: 41.85%
+2025-04-18 14:12:02,000:INFO: Epoch [18/40], Train Loss: 1.2145, Train Acc: 56.11%, Test Loss: 1.6852, Test Acc: 41.07%
+2025-04-18 14:12:35,120:INFO: Epoch [19/40], Train Loss: 1.1791, Train Acc: 57.37%, Test Loss: 1.7473, Test Acc: 40.20%
+2025-04-18 14:13:08,873:INFO: Epoch [20/40], Train Loss: 1.1694, Train Acc: 56.89%, Test Loss: 1.6789, Test Acc: 40.59%
+2025-04-18 14:13:42,136:INFO: Epoch [21/40], Train Loss: 1.1521, Train Acc: 58.37%, Test Loss: 1.6353, Test Acc: 44.00%
+2025-04-18 14:13:42,294:INFO: Best model saved with accuracy: 44.00%
+2025-04-18 14:14:15,402:INFO: Epoch [22/40], Train Loss: 1.1456, Train Acc: 58.84%, Test Loss: 1.6765, Test Acc: 42.93%
+2025-04-18 14:14:48,853:INFO: Epoch [23/40], Train Loss: 1.1260, Train Acc: 59.15%, Test Loss: 1.7148, Test Acc: 42.63%
+2025-04-18 14:15:22,185:INFO: Epoch [24/40], Train Loss: 1.1112, Train Acc: 60.10%, Test Loss: 1.6762, Test Acc: 42.93%
+2025-04-18 14:15:55,540:INFO: Epoch [25/40], Train Loss: 1.0999, Train Acc: 61.28%, Test Loss: 1.6767, Test Acc: 43.41%
+2025-04-18 14:16:28,981:INFO: Epoch [26/40], Train Loss: 1.0895, Train Acc: 60.71%, Test Loss: 1.6686, Test Acc: 43.51%
+2025-04-18 14:17:02,332:INFO: Epoch [27/40], Train Loss: 1.0883, Train Acc: 60.93%, Test Loss: 1.6549, Test Acc: 45.07%
+2025-04-18 14:17:02,494:INFO: Best model saved with accuracy: 45.07%
+2025-04-18 14:17:35,774:INFO: Epoch [28/40], Train Loss: 1.0589, Train Acc: 61.50%, Test Loss: 1.6183, Test Acc: 46.05%
+2025-04-18 14:17:35,932:INFO: Best model saved with accuracy: 46.05%
+2025-04-18 14:18:09,446:INFO: Epoch [29/40], Train Loss: 1.0406, Train Acc: 63.67%, Test Loss: 1.6516, Test Acc: 45.07%
+2025-04-18 14:18:42,606:INFO: Epoch [30/40], Train Loss: 1.0330, Train Acc: 62.62%, Test Loss: 1.6411, Test Acc: 46.24%
+2025-04-18 14:18:42,772:INFO: Best model saved with accuracy: 46.24%
+2025-04-18 14:19:16,321:INFO: Epoch [31/40], Train Loss: 1.0213, Train Acc: 63.36%, Test Loss: 1.6504, Test Acc: 45.76%
+2025-04-18 14:19:49,880:INFO: Epoch [32/40], Train Loss: 1.0103, Train Acc: 64.93%, Test Loss: 1.6457, Test Acc: 46.24%
+2025-04-18 14:20:24,041:INFO: Epoch [33/40], Train Loss: 1.0066, Train Acc: 64.32%, Test Loss: 1.6498, Test Acc: 45.56%
+2025-04-18 14:20:57,890:INFO: Epoch [34/40], Train Loss: 0.9912, Train Acc: 65.45%, Test Loss: 1.6361, Test Acc: 46.05%
+2025-04-18 14:21:31,221:INFO: Epoch [35/40], Train Loss: 0.9836, Train Acc: 65.71%, Test Loss: 1.6351, Test Acc: 46.24%
+2025-04-18 14:22:04,494:INFO: Epoch [36/40], Train Loss: 0.9796, Train Acc: 66.06%, Test Loss: 1.6335, Test Acc: 47.51%
+2025-04-18 14:22:04,655:INFO: Best model saved with accuracy: 47.51%
+2025-04-18 14:22:37,998:INFO: Epoch [37/40], Train Loss: 0.9702, Train Acc: 67.06%, Test Loss: 1.6297, Test Acc: 46.93%
+2025-04-18 14:23:11,512:INFO: Epoch [38/40], Train Loss: 0.9669, Train Acc: 66.58%, Test Loss: 1.6296, Test Acc: 46.93%
+2025-04-18 14:23:44,890:INFO: Epoch [39/40], Train Loss: 0.9609, Train Acc: 66.80%, Test Loss: 1.6317, Test Acc: 46.73%
+2025-04-18 14:24:18,302:INFO: Epoch [40/40], Train Loss: 0.9649, Train Acc: 66.88%, Test Loss: 1.6316, Test Acc: 46.73%
+2025-04-18 14:24:18,402:INFO: Training complete. Best test accuracy: 47.51%
+2025-04-18 14:24:18,402:INFO: Training completed.
+2025-04-18 14:24:18,402:INFO: TensorBoard logs saved.
+2025-04-18 14:24:18,402:INFO: Model saved.
