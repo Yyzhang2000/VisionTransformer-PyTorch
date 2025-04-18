@@ -30,8 +30,8 @@ TRAINING_CONFIG = {
     "batch_size": 32,
     "epochs": 40,
     "learning_rate": 0.001,
-    "lr_scheduler_step": 10,
-    "lr_scheduler_gamma": 0.1,
+    "betas": (0.9, 0.999),
+    "weight_decay": 0.01,
 }
 ATTENTION_CONFIG = {"num_heads": 8, "dropout": 0.1, "use_bias": True}
 MODEL_CONFIG = {

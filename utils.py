@@ -105,6 +105,8 @@ def load_config(config_path):
     model_cfg_dict = config_dict["model_config"]
 
     attention_cfg = AttentionConfig(**model_cfg_dict["attention_config"])
-    model_cfg = ViTConfig(**{**model_cfg_dict, "attention_config": attention_cfg})
+    model_cfg_dict.pop("attention_config")
+    model_cfg = ViTConfig(**model_cfg_dict)
+    model_cfg.attention_config = attention_cfg
 
-    print(model_cfg)
+    return model_cfg
