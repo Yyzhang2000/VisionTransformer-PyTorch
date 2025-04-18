@@ -2,11 +2,16 @@
 set -e
 
 # Load environment variables from .env
-if [ -f .env ]; then
-  export $(grep -v '^#' .env | xargs)
-else
-  echo "❌ .env file not found!"
-  exit 1
+
+# Check if KAGGLE_USERNAME and KAGGLE_KEY are already set in the environment
+if [[ -z "$KAGGLE_USERNAME" || -z "$KAGGLE_KEY" ]]; then
+  echo "🔍 Loading from .env since environment variables not found..."
+  if [ -f .env ]; then
+    export $(grep -v '^#' .env | xargs)
+  else
+    echo "❌ .env file not found and KAGGLE_* variables are not set!"
+    exit 1
+  fi
 fi
 
 kaggle datasets download karimabdulnabi/fruit-classification10-class  -p ./data --unzip
