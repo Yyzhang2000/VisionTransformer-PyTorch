@@ -78,7 +78,6 @@ def get_device():
         device = torch.device("mps")
     else:
         device = torch.device("cpu")
-    print(f"Using device: {device}")
 
     return device
 
