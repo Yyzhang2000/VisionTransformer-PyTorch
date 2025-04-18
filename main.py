@@ -37,7 +37,7 @@ MODEL_CONFIG = {
     "patch_size": 16,
     "num_classes": 10,  # Number of classes in the dataset
     "hidden_states": 512,
-    "num_layers": 8,
+    "num_layers": 12,
     "dropout": 0.1,
 }
 ###### CONFIGURATION ######
