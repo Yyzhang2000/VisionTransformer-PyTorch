@@ -105,6 +105,7 @@ if __name__ == "__main__":
         criterion=criterion,
         num_epochs=20,
         device=device,
+        model_dir=model_dir
         scheduler=scheduler,
         writer=writer,
     )
